@@ -1,0 +1,16 @@
+<div class="header">
+  <app-principal
+    [title]="'Perfil do Usuário'"
+  ></app-principal>
+  <app-navigation></app-navigation>
+</div>
+  
+<div class="topPrincipal"></div>
+  
+<div class="demo-tab-content" style="margin: 25px">
+    <div (click)="onPerson()" class="user-icon"><mat-icon matTooltip="Ver Detalhes">pageview</mat-icon></div>
+    <div (click)="onPerson()" class="user-name" matTooltip="Ver Detalhes"> &nbsp; {{person}}</div>
+  <br>
+    <p style="clear:both;"><b>Usuário:</b> {{userName}}</p>
+    <p><b>Data de login:</b> {{dateLogin | date: 'dd/MM/yyyy HH:mm'}}</p>
+</div>

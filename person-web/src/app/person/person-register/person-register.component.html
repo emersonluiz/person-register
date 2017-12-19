@@ -1,0 +1,173 @@
+<div class="header">
+  <app-action 
+    [title]="'Cadastro de Pessoa'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div class="demo-tab-content" style="margin: 25px">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true"hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Identificação
+        </mat-panel-title>
+        <mat-panel-description>
+          Dados de Identificação
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="person.name" placeholder="Nome" type="text" value="" required />
+        <mat-error *ngIf="isValid()">
+          Nome é um campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="pickerBirth" [(ngModel)]="person.birth" placeholder="Nascimento" readonly>
+        <mat-datepicker-toggle matSuffix [for]="pickerBirth"></mat-datepicker-toggle>
+        <mat-datepicker #pickerBirth></mat-datepicker>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Endereço
+        </mat-panel-title>
+        <mat-panel-description>
+          Endereço Residencial
+          <mat-icon>place</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="example-full-width">
+        <input matInput #postalCode maxlength="8" placeholder="Cep" value="" [(ngModel)]="person.postalCode" (blur)="onBlurZipcode()">
+        <mat-hint align="end">{{postalCode.value.length}} / 8</mat-hint>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Endereço" [(ngModel)]="person.address"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cidade" name="city" [(ngModel)]="person.city" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Estado" [(ngModel)]="person.state">
+          <mat-option *ngFor="let st of states" [value]="st.name">
+            {{ st.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Contato
+        </mat-panel-title>
+        <mat-panel-description>
+          Telefones e Emails
+          <mat-icon>perm_phone_msg</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      
+      <mat-list>
+        <h3 mat-subheader><mat-icon mat-icon>phone</mat-icon>&nbsp;Telefones</h3>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Fixo" value="" [(ngModel)]="person.phone">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Celular" value="" [(ngModel)]="person.phoneMobile">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Comercial" value="" [(ngModel)]="person.phoneBusiness">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+            <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Outro" value="" [(ngModel)]="person.phoneOther">
+              </mat-form-field>
+          </p>
+        </mat-list-item>
+        <br><br>
+        <mat-divider></mat-divider>
+        <br>
+        <h3 mat-subheader><mat-icon mat-icon>email</mat-icon>&nbsp;Emails</h3>
+        <mat-list-item>
+          <p mat-line>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Particular" value="" [(ngModel)]="person.email">
+            </mat-form-field>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+            <p mat-line>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Comercial" value="" [(ngModel)]="person.emailBusiness">
+              </mat-form-field>
+            </p>
+          </mat-list-item>
+          <mat-list-item>
+              <p mat-line>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Outro" value="" [(ngModel)]="person.emailOther">
+                </mat-form-field>
+              </p>
+            </mat-list-item>
+      </mat-list>
+      <br><br>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> 
+          Login
+        </mat-panel-title>
+        <mat-panel-description>
+          Usuário para Login no Sistema
+          <mat-icon>https</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Usuário" type="text" value="" [(ngModel)]="user.user" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Senha" type="text" value="" [(ngModel)]="user.password" />
+      </mat-form-field>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>
+
+<div style="padding: 15px">
+  <br />
+  <div style="text-align: right; margin-right: 15px">
+    <button mat-raised-button color="primary" type="button" (click)="onSave()" [disabled]="isValid()">
+        Save
+    </button>
+  </div>
+</div>

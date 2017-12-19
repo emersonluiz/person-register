@@ -1,0 +1,35 @@
+<div class="header">
+  <app-action 
+    [title]="'Buscar Pessoa'"
+    (close)="onClose()">
+  </app-action>
+
+  <mat-card class="search-card">
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="search" (keyup)="onSearch()">
+      <span matPrefix><mat-icon>search</mat-icon>&nbsp;&nbsp;</span>
+    </mat-form-field>
+  </mat-card>
+
+</div>
+
+<div class="topSearch"></div>
+
+<mat-card *ngFor="let person of persons">
+    <mat-card-subtitle style="cursor: pointer; color: black; font-weight: bold" (click)="onDetail(person.id)">
+      <div style="margin-bottom: 5px">
+        <div style="position: relative; float:left; color: #707070"><mat-icon matTooltip="Ver Detalhes">pageview</mat-icon></div>
+        <div style="position:relative; float: left; line-height: 25px;" matTooltip="Ver Detalhes"> &nbsp; {{person?.name}}</div>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div style="clear:both">
+          
+      </div>
+    </mat-card-content>
+  
+    <div style="border-top: 1px solid #E9E9E9; margin-bottom:20px; padding-top: 10px; color: rgba(7, 7, 7, 0.57);">
+      <div style="float: left; width: 49%; text-align: center"><button mat-button (click)="onEdit(person.id)"><mat-icon>create</mat-icon> Editar</button></div>
+      <div style="float: right; width: 49%; text-align: center"><button mat-button (click)="onDelete(person.id)"><mat-icon>delete</mat-icon> Excluir</button></div>
+    </div>
+  </mat-card>

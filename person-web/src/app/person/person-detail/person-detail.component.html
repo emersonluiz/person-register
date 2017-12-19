@@ -1,0 +1,100 @@
+<div class="header">
+  <app-action 
+    [title]="'Detalhes da Pessoa'"
+    (close)="onClose()">
+  </app-action>
+</div>
+
+<div class="topAction"></div>
+
+<div class="demo-tab-content" style="margin: 25px">
+
+<mat-accordion class="example-headers-align">
+
+    <mat-expansion-panel [expanded]="true"hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> 
+            Identificação
+          </mat-panel-title>
+          <mat-panel-description>
+            Dados de Identificação
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <h3>{{person?.name}}</h3>
+        <div>Nascimento: {{person?.birthDate | date: 'dd/MM/yyyy'}}</div>
+        
+    </mat-expansion-panel>
+    
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Endereço
+      </mat-panel-title>
+      <mat-panel-description>
+        Endereço Residencial
+        <mat-icon>place</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div *ngFor="let ad of person.addresses">
+      <div>CEP: {{ad.zipcode}}</div>
+      <div>Endereço: {{ad.address}}</div>
+      <div>Cidade: {{ad.city}}</div>
+      <div>Estado: {{ad.state}}</div>
+    </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Contato
+      </mat-panel-title>
+      <mat-panel-description>
+        Telefones e Emails
+        <mat-icon>perm_phone_msg</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <mat-list>
+      <h3 mat-subheader><mat-icon mat-icon>phone</mat-icon>&nbsp;Telefones</h3>
+      <mat-list-item *ngFor="let phone of person?.phones">
+        <p mat-line>
+            {{phone.type}} : {{phone.number}}
+        </p>
+      </mat-list-item>
+     
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <h3 mat-subheader><mat-icon mat-icon>email</mat-icon>&nbsp;Emails</h3>
+      <mat-list-item *ngFor="let email of person?.emails">
+        <p mat-line>
+            {{email.type}} : {{email.email}}
+        </p>
+      </mat-list-item>
+      
+    </mat-list>
+    <br><br>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+        Login
+      </mat-panel-title>
+      <mat-panel-description>
+        Usuário para Login no Sistema
+        <mat-icon>https</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <h3>{{user?.user}}</h3>
+    
+</mat-expansion-panel>
+  
+</mat-accordion>
+</div>
